@@ -1,7 +1,7 @@
 import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import Task from '../task/task.component';
-import { Container, Title, TaskList } from './column.styled';
+import { Container, Title, TaskList, Button } from './column.styled';
 
 const Column = (props) => {
     return (
@@ -19,6 +19,7 @@ const Column = (props) => {
                     </TaskList>
                 )}
             </Droppable>
+            <Button>Add another card</Button>
         </Container>
     )
 }
