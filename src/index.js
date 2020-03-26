@@ -5,11 +5,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import initialData from './initial.data';
-
+import result from './components/12312';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App initialData={initialData} />
+    <App initialData={initialData} result={result} />
   </React.StrictMode>,
   document.getElementById('root')
 );
