@@ -14,4 +14,5 @@ export const Title = styled.h3`
 
 export const TaskList = styled.div`
     padding:8px;
+    background-color: ${props => (props.isDraggingOver ? 'bisque' : 'white')}; 
 `;

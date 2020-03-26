@@ -5,11 +5,12 @@ import { Draggable } from 'react-beautiful-dnd';
 const Task = (props) => {
     return (
         <Draggable draggableId={props.task.id} index={props.index}>
-            {provided => (
-                <Container 
+            {(provided, snapshot) => (
+                <Container
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
-                    ref={provided.innerRef} 
+                    ref={provided.innerRef}
+                    isDragging={snapshot.isDragging}
                 >
                     {props.task.content}
                 </Container>
