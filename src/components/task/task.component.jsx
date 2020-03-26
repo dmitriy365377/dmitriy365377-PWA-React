@@ -1,11 +1,20 @@
 import React from 'react';
-import { Container } from './task.styled'
+import { Container } from './task.styled';
+import { Draggable } from 'react-beautiful-dnd';
 
 const Task = (props) => {
     return (
-        <Container>
-            {props.task.content}
-        </Container>
+        <Draggable draggableId={props.task.id} index={props.index}>
+            {provided => (
+                <Container 
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef} 
+                >
+                    {props.task.content}
+                </Container>
+            )}
+        </Draggable>
     )
 }
 

@@ -1,9 +1,9 @@
 const initialData = {
     tasks: {
         'task-1': { id: 'task-1', content: 'Take out the grabage' },
-        'task-2': { id: 'task-2', content: 'Take out the grabage - 2' },
-        'task-3': { id: 'task-3', content: 'Take out the grabage - 3' },
-        'task-4': { id: 'task-4', content: 'Take out the grabage - 4' }
+        'task-2': { id: 'task-2', content: 'Foto' },
+        'task-3': { id: 'task-3', content: 'Computer' },
+        'task-4': { id: 'task-4', content: 'USA' }
     },
     columns: {
         'column-1': {
