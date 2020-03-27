@@ -56,11 +56,11 @@ const cardReducer = (state = INITIAL_STATE, { payload, type }) => {
             },
                 state.columns[payload.columnId].taskIds.push('task-' + cardID)
             )
-        case 'UPDATE_COLUMNS': 
+        case 'UPDATE_COLUMNS':
             return {
                 ...payload
             }
-        case 'INIT_FROM_LOCALSTORAGE': 
+        case 'INIT_FROM_LOCALSTORAGE':
             return {
                 ...payload
             }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, Button, ButtonClick } from './button.styled'
 import TextareaAutosize from 'react-textarea-autosize';
- 
+
 const ButtonTrello = ({ columnId }) => {
     const [formOpen, setformOpen] = useState(false)
     const [textArea, settextArea] = useState("")
