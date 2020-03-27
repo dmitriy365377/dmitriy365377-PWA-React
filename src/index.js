@@ -7,10 +7,11 @@ import * as serviceWorker from './serviceWorker';
 import initialData from './initial.data';
 import result from './components/12312';
 import { Provider } from 'react-redux';
+import store from '../src/redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
+    <Provider store={store}>
       <App initialData={initialData} result={result} />
     </Provider>
   </React.StrictMode>,

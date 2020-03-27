@@ -3,8 +3,9 @@ import { connect } from 'react-redux'
 import { addItem } from '../../redux/cart/cart.reducer'
 import { Droppable } from 'react-beautiful-dnd';
 import Task from '../task/task.component';
-import { Container, Title, TaskList, Button } from './column.styled';
- 
+import { Container, Title, TaskList } from './column.styled';
+import ButtonTrello from '../button/button.component' ;
+
 const Column = (props) => {
     return (
         <Container>
@@ -21,7 +22,7 @@ const Column = (props) => {
                     </TaskList>
                 )}
             </Droppable>
-            <Button onClick={() => addItem()}>Add another card</Button>
+           <ButtonTrello/>
         </Container>
     )
 }
