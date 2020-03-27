@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import React  from 'react';
+import { connect,useDispatch } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
-import Column from './components/column/column.component'
-import { Container } from './app.styled'
-import { connect } from 'react-redux'
+import Column from './components/column/column.component';
+import { Container } from './app.styled';
 
 
-const App = (props) => {
-  console.log(props)
-  const [state, setState] = useState(props.store.cart)
-  console.log(state)
 
-
+const App = ({ card }) => {
+  const { tasks, columns, columnOrder } = card
+   
+  const dispatch = useDispatch()
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
 
@@ -25,8 +24,8 @@ const App = (props) => {
       return
     }
 
-    const start = state.columns[source.droppableId];
-    const finish = state.columns[destination.droppableId];
+    const start = card.columns[source.droppableId];
+    const finish = card.columns[destination.droppableId];
 
 
     if (start === finish) {
@@ -40,14 +39,15 @@ const App = (props) => {
       };
 
       const newState = {
-        ...state,
+        ...card,
         columns: {
-          ...state.columns,
+          ...card.columns,
           [newColumn.id]: newColumn
         }
-      }
+      } 
 
-      setState(newState);
+      dispatch({ type: 'UPDATE_COLUMNS', payload: newState })
+       
       return;
     }
 
@@ -67,14 +67,15 @@ const App = (props) => {
     }
 
     const newState = {
-      ...state,
+      ...card,
       columns: {
-        ...state.columns,
+        ...card.columns,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish
       }
     };
-    setState(newState);
+    
+    dispatch({ type: 'UPDATE_COLUMNS', payload: newState });
   };
 
   return (
@@ -82,10 +83,10 @@ const App = (props) => {
       onDragEnd={onDragEnd}
     >
       <Container>
-        {state.columnOrder.map((columnId) => {
-          const column = state.columns[columnId];
-          const tasks = column.taskIds.map((taskId) => state.tasks[taskId]);
-          return <Column key={column.id} column={column} tasks={tasks} />;
+        {columnOrder.map((columnId) => { 
+          const column = columns[columnId];
+          const tasks = column.taskIds.map((taskId) => card.tasks[taskId]);
+          return <Column key={column.id} column={column} tasks={tasks} />; 
         })
         }
       </Container>
@@ -94,7 +95,7 @@ const App = (props) => {
 }
 
 const mapStateToProps = (store) => ({
-  store: store
+  card: store.card
 })
 
 export default connect(mapStateToProps, null)(App);

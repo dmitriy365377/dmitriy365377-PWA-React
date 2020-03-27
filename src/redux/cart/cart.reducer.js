@@ -1,4 +1,4 @@
-const INIRIAL_STATE = {
+const INITIAL_STATE = {
     tasks: {
         'task-1': {
             id: 'task-1',
@@ -15,7 +15,7 @@ const INIRIAL_STATE = {
         'task-4': {
             id: 'task-4',
             content: 'USA'
-        }
+        } 
     },
     columns: {
         'column-1': {
@@ -44,37 +44,27 @@ const INIRIAL_STATE = {
 }
 
 
-let cardID = 4;
+let cardID = Object.keys(INITIAL_STATE.tasks).length;
 
-const cartReducer = (state = INIRIAL_STATE, action) => {
-    switch (action.type) {
+const cardReducer = (state = INITIAL_STATE, { payload, type }) => {
+    switch (type) {
         case 'ADD_ITEM':
-            let taskObjGen = () => ({
-                ['task-' + cardID]: {
-                    id: 'task-' + cardID,
-                    content: action.payload.textArea
-                }
-            })
-            cardID += 1
-
+            cardID += 1 
+            return Object.assign({}, state, state.tasks['task-' + cardID] = {
+                id: 'task-' + cardID,
+                content: payload.textArea
+            },
+                state.columns[payload.columnId].taskIds.push('task-' + cardID)
+            )
+        case 'UPDATE_COLUMNS':
+            console.log('payload',payload)
             return {
-                ...state.tasks,
-                cartItems: taskObjGen()
+                ...payload
             }
 
-        // return {
-        //     ...state.tasks,
-        //     cartItems: addItemToCart(getID, action.payload)
-        // }
         default:
             return state
     }
 }
 
-export const addItem = textArea => ({
-    type: 'ADD_ITEM',
-    payload: textArea
-})
-
-
-export default cartReducer
+export default cardReducer

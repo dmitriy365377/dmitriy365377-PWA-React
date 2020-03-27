@@ -3,27 +3,30 @@ import React from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import Task from '../task/task.component';
 import { Container, Title, TaskList } from './column.styled';
-import ButtonTrello from '../button/button.component' ;
+import ButtonTrello from '../button/button.component';
+ 
 
-const Column = (props) => {
+const Column = ({ column, tasks }) => { 
     return (
         <Container>
-            <Title>{props.column.title}</Title>
-            <Droppable droppableId={props.column.id}>
+            <Title>{column.title}</Title>
+            <Droppable droppableId={column.id}>
                 {(provided, snapshot) => (
                     <TaskList
                         ref={provided.innerRef}
                         {...provided.droppableProps}
                         isDraggingOver={snapshot.isDraggingOver}
                     >
-                        {props.tasks.map((task, index) => (<Task key={task.id} task={task} index={index} />))}
+                        {tasks.map((task, index) => (<Task key={task.id} task={task} index={index} />))}
                         {provided.placeholder}
                     </TaskList>
                 )}
             </Droppable>
-           <ButtonTrello/>
+            <ButtonTrello columnId={column.id}/>
         </Container>
     )
 }
 
-export default Column
+
+
+export default Column 

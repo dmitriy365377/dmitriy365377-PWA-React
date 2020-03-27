@@ -9,10 +9,7 @@ export const Card = styled.div`
     min-height: auto;
     min-width: auto;
     padding: 6px 8px 2px;
-`
-
-
-
+` 
 export const Button = styled.button`
     display: inline-block;
     padding: 0.5em 3em;
@@ -26,4 +23,19 @@ export const Button = styled.button`
     text-align: center;
     transition: all 0.15s;
     background-color: lightgrey;
+`
+
+export const ButtonClick = styled.button`
+                    background-color: #4CAF50; 
+                    border: none;
+                    color: white;
+                    padding: 10px 20px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 16px;
+                    margin: 4px 8px;
+                    transition-duration: 0.4s;
+                    cursor: pointer;
+                    width:50%;
 `

@@ -12,7 +12,7 @@ import store from '../src/redux/store';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store}> 
       <App />
     </Provider>
   </React.StrictMode>,

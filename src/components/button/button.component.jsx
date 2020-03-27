@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { Card, Button } from './button.styled'
+import { useDispatch } from 'react-redux';
+import { Card, Button, ButtonClick } from './button.styled'
 import TextareaAutosize from 'react-textarea-autosize';
 
-import { connect } from 'react-redux';
-import { addItem } from '../../redux/cart/cart.reducer';
+// import { connect } from 'react-redux';
+// import { addItem } from '../../redux/cart/cart.reducer';
 
-const ButtonTrello = () => {
+const ButtonTrello = ({columnId}) => {
     const [formOpen, setformOpen] = useState(false)
     const [textArea, settextArea] = useState("")
+    const dispatch = useDispatch()
 
     const openForm = () => {
         setformOpen(true)
@@ -18,27 +20,28 @@ const ButtonTrello = () => {
     }
 
     const handleInputChange = (event) => {
-        event.preventDefault();
+        event.preventDefault(); 
         settextArea(event.target.value)
-    } 
-    
+    }
+
     const renderForm = () => {
         return (<>
             <Card>
                 <TextareaAutosize
                     id="textarea"
-                    autoFocus
-                    onBlur={closeForm}
+                    autoFocus 
                     value={textArea}
                     onChange={handleInputChange}
                 />
             </Card>
 
-            <button
-                onMouseDown={() => addItem(textArea)}
-                id="button"
+            <ButtonClick
+                onClick={() => {
+                    dispatch({ type: 'ADD_ITEM', payload: { textArea, columnId } })
+                    closeForm()
+                }}
             >Add text
-            </button>
+            </ButtonClick>
 
             <style jsx>{`
                 #textarea {
@@ -47,23 +50,7 @@ const ButtonTrello = () => {
                    overflow:hidden;
                    outline:none;
                    border:none;
-                } 
-
-                #button {
-                    background-color: #4CAF50; 
-                    border: none;
-                    color: white;
-                    padding: 10px 20px;
-                    text-align: center;
-                    text-decoration: none;
-                    display: inline-block;
-                    font-size: 16px;
-                    margin: 4px 8px;
-                    transition-duration: 0.4s;
-                    cursor: pointer;
-                    width:50%;
-                }
-                
+                }  
             `}
             </style>
         </>
@@ -78,10 +65,6 @@ const ButtonTrello = () => {
 
     return formOpen ? renderForm() : renderAddButton()
 }
+ 
 
-
-const mapDispatchToProps = (dispatch) => ({
-    addItem: textArea => dispatch(addItem(textArea))
-})
-
-export default connect(null, mapDispatchToProps)(ButtonTrello);
+export default ButtonTrello; 
