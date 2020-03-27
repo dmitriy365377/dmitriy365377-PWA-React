@@ -1,6 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { addItem } from '../../redux/cart/cart.reducer'
+
 import { Droppable } from 'react-beautiful-dnd';
 import Task from '../task/task.component';
 import { Container, Title, TaskList } from './column.styled';
@@ -27,8 +26,4 @@ const Column = (props) => {
     )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    addItem: item => dispatch(addItem(item))
-})
-
-export default connect(null, mapDispatchToProps)(Column);
+export default Column

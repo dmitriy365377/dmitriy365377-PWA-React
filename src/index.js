@@ -4,15 +4,16 @@ import '@atlaskit/css-reset';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import initialData from './initial.data';
-import result from './components/12312';
+// import initialData from './initial.data'; 
 import { Provider } from 'react-redux';
 import store from '../src/redux/store';
+
+// initialData={initialData}  
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App initialData={initialData} result={result} />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

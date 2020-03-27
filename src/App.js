@@ -2,17 +2,16 @@ import React, { useState } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Column from './components/column/column.component'
 import { Container } from './app.styled'
-
+import { connect } from 'react-redux'
 
 
 const App = (props) => {
-  const [state, setState] = useState(props.initialData)
+  console.log(props)
+  const [state, setState] = useState(props.store.cart)
+  console.log(state)
 
 
   const onDragEnd = (result) => {
-    console.log(result)
-
-
     const { destination, source, draggableId } = result;
 
     if (!destination) {
@@ -28,7 +27,7 @@ const App = (props) => {
 
     const start = state.columns[source.droppableId];
     const finish = state.columns[destination.droppableId];
-    
+
 
     if (start === finish) {
       const newTaskIds = Array.from(start.taskIds);
@@ -94,4 +93,8 @@ const App = (props) => {
   )
 }
 
-export default App;
+const mapStateToProps = (store) => ({
+  store: store
+})
+
+export default connect(mapStateToProps, null)(App);
