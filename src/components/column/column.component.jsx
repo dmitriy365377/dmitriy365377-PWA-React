@@ -4,9 +4,9 @@ import { Droppable } from 'react-beautiful-dnd';
 import Task from '../task/task.component';
 import { Container, Title, TaskList } from './column.styled';
 import ButtonTrello from '../button/button.component';
- 
 
-const Column = ({ column, tasks }) => { 
+
+const Column = ({ column, tasks }) => {
     return (
         <Container>
             <Title>{column.title}</Title>
@@ -22,11 +22,11 @@ const Column = ({ column, tasks }) => {
                     </TaskList>
                 )}
             </Droppable>
-            <ButtonTrello columnId={column.id}/>
+            <ButtonTrello columnId={column.id} />
         </Container>
     )
 }
 
 
 
-export default Column 
+export default Column; 

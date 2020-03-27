@@ -15,7 +15,7 @@ const INITIAL_STATE = {
         'task-4': {
             id: 'task-4',
             content: 'USA'
-        } 
+        }
     },
     columns: {
         'column-1': {
@@ -49,22 +49,24 @@ let cardID = Object.keys(INITIAL_STATE.tasks).length;
 const cardReducer = (state = INITIAL_STATE, { payload, type }) => {
     switch (type) {
         case 'ADD_ITEM':
-            cardID += 1 
+            cardID += 1
             return Object.assign({}, state, state.tasks['task-' + cardID] = {
                 id: 'task-' + cardID,
                 content: payload.textArea
             },
                 state.columns[payload.columnId].taskIds.push('task-' + cardID)
             )
-        case 'UPDATE_COLUMNS':
-            console.log('payload',payload)
+        case 'UPDATE_COLUMNS': 
             return {
                 ...payload
             }
-
+        case 'INIT_FROM_LOCALSTORAGE': 
+            return {
+                ...payload
+            }
         default:
             return state
     }
 }
 
-export default cardReducer
+export default cardReducer;

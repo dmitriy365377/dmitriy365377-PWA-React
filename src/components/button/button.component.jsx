@@ -2,11 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Card, Button, ButtonClick } from './button.styled'
 import TextareaAutosize from 'react-textarea-autosize';
-
-// import { connect } from 'react-redux';
-// import { addItem } from '../../redux/cart/cart.reducer';
-
-const ButtonTrello = ({columnId}) => {
+ 
+const ButtonTrello = ({ columnId }) => {
     const [formOpen, setformOpen] = useState(false)
     const [textArea, settextArea] = useState("")
     const dispatch = useDispatch()
@@ -20,7 +17,7 @@ const ButtonTrello = ({columnId}) => {
     }
 
     const handleInputChange = (event) => {
-        event.preventDefault(); 
+        event.preventDefault();
         settextArea(event.target.value)
     }
 
@@ -29,7 +26,7 @@ const ButtonTrello = ({columnId}) => {
             <Card>
                 <TextareaAutosize
                     id="textarea"
-                    autoFocus 
+                    autoFocus
                     value={textArea}
                     onChange={handleInputChange}
                 />
@@ -65,6 +62,6 @@ const ButtonTrello = ({columnId}) => {
 
     return formOpen ? renderForm() : renderAddButton()
 }
- 
+
 
 export default ButtonTrello; 
